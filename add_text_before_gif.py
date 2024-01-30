@@ -6,11 +6,11 @@ def generate_frames_with_text(width, height, text, n_frames=10):
     frames = []
     font_size = height / 10
     for i in range(n_frames):
-        new_im = Image.new("RGB", (width, height), color=(0, 0, 0))
+        new_im = Image.new("RGB", (width, height), color=(255, 255, 255))
 
         # modify pixel 0,0 to be white.
         if i % 2 == 0:
-            new_im.putpixel((0, 0), (255, 255, 255))
+            new_im.putpixel((0, 0), (0, 0, 0))
 
         font = ImageFont.truetype("Roboto-Regular.ttf", font_size)
 
@@ -19,7 +19,7 @@ def generate_frames_with_text(width, height, text, n_frames=10):
 
         if text_width < width:
 
-            draw.text((5, (height - font_size)/2), text, font=font)
+            draw.text((5, (height - font_size)/2), text, font=font, fill=(0, 0, 0))
             frames.append(new_im)
             continue
         else:
@@ -38,7 +38,7 @@ def generate_frames_with_text(width, height, text, n_frames=10):
             lines.append(line)
             y = (height - font_size * len(lines))/2
             for line in lines:
-                draw.text((5, y), line, font=font)
+                draw.text((5, y), line, font=font, fill=(0, 0, 0))
                 y += font_size
 
             frames.append(new_im)
